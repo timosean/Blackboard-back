@@ -9,6 +9,9 @@ const postAPIRouter = require("./routes/post");
 const app = express();
 db.sequelize.sync();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // routes
 app.use("/api/user", userAPIRouter);
 app.use("/api/lecture", lectureAPIRouter);
