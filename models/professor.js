@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      professorId: {
+      idNum: {
         type: DataTypes.STRING(15),
         allowNull: false,
         unique: true,
