@@ -1,3 +1,4 @@
+const { crossOriginEmbedderPolicy } = require("helmet");
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || "development";
 const config = require("../config/config.json")[env];
@@ -16,6 +17,11 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
+db.Image = require("./image")(sequelize, Sequelize);
+db.Lecture = require("./lecture")(sequelize, Sequelize);
+db.Post = require("./post")(sequelize, Sequelize);
+db.Student = require("./student")(sequelize, Sequelize);
+db.Professor = require("./professor")(sequelize, Sequelize);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -1,4 +1,4 @@
-const Student = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Student = sequelize.define(
     "Student",
     {
@@ -38,5 +38,3 @@ const Student = (sequelize, DataTypes) => {
 
   return Student;
 };
-
-export default Student;

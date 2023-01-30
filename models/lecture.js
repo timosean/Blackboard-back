@@ -1,4 +1,4 @@
-const Lecture = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Lecture = sequelize.define(
     "Lecture",
     {
@@ -22,4 +22,6 @@ const Lecture = (sequelize, DataTypes) => {
     db.Lecture.hasMany(db.Post);
     db.Lecture.belongsTo(db.Professor);
   };
+
+  return Lecture;
 };
