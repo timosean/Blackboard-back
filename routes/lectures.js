@@ -9,3 +9,5 @@ router.get("/professor", (req, res) => {});
 
 // 수강신청한 강의 조회 (학생)
 router.get("/student", (req, res) => {});
+
+module.exports = router;
