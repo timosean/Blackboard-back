@@ -1,6 +1,7 @@
 const express = require("express");
-const db = require("./models/index");
+const morgan = require("morgan");
 
+const db = require("./models/index");
 const userAPIRouter = require("./routes/user");
 const lectureAPIRouter = require("./routes/lecture");
 const lecturesAPIRouter = require("./routes/lectures");
@@ -9,6 +10,7 @@ const postAPIRouter = require("./routes/post");
 const app = express();
 db.sequelize.sync();
 
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
