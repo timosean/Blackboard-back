@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const db = require("./models/index");
 const userAPIRouter = require("./routes/user");
@@ -13,6 +14,7 @@ db.sequelize.sync();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // routes
 app.use("/api/user", userAPIRouter);
