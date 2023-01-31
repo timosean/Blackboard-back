@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Professor = sequelize.define(
     "Professor",
     {
-      userId: {
+      userID: {
         type: DataTypes.STRING(20),
         allowNull: false,
         unique: true,

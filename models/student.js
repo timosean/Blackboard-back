@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Student = sequelize.define(
     "Student",
     {
-      userId: {
+      userID: {
         type: DataTypes.STRING(20),
         allowNull: false,
         unique: true,
@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     },
+    { timestamps: false },
     {
       charset: "utf8",
       collate: "utf8_general_ci",

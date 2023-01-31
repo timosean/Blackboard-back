@@ -2,22 +2,25 @@ const express = require("express");
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const router = express.Router();
+const Student = require("../models/student");
+const Professor = require("../models/professor");
 
 // 회원가입
 router.post("/", async (req, res) => {
   try {
-    const exUser = await db.User.findOne({
+    console.log(db.Student);
+    const exUser = await db.Student.findOne({
       where: {
         userID: req.body.userID,
       },
     });
-
+    console.log("A");
     if (exUser) {
       return res.status(403).send("이미 사용중인 아이디입니다.");
     }
-
+    console.log("B");
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
-    const newUser = await db.User.create({
+    const newUser = await db.Student.create({
       userID: req.body.userID,
       password: hashedPassword,
       idNum: req.body.idNum,
