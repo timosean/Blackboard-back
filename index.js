@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
+const passport = require("passport");
 const dotenv = require("dotenv");
 
 const db = require("./models/index");
@@ -36,6 +37,11 @@ app.use(
     },
   })
 );
+
+// Passport 같은 경우 express-session 아래에 적는다.
+// (미들웨어간에 서로 의존관계가 있는 경우 순서가 중요)
+app.use(passport.initialize());
+app.use(passport.session());
 
 // routes
 app.use("/api/user", userAPIRouter);
