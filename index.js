@@ -14,7 +14,12 @@ db.sequelize.sync();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 // routes
 app.use("/api/user", userAPIRouter);
