@@ -6,6 +6,7 @@ const expressSession = require("express-session");
 const passport = require("passport");
 const dotenv = require("dotenv");
 
+const passportConfig = require("./passport");
 const db = require("./models/index");
 const userAPIRouter = require("./routes/user");
 const lectureAPIRouter = require("./routes/lecture");
@@ -15,6 +16,7 @@ const postAPIRouter = require("./routes/post");
 dotenv.config();
 const app = express();
 db.sequelize.sync();
+passportConfig();
 
 app.use(morgan("dev"));
 app.use(express.json());

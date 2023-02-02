@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const router = express.Router();
+const passport = require("passport");
 
 // 회원가입
 router.post("/", async (req, res) => {
@@ -46,7 +47,34 @@ router.post("/", async (req, res) => {
 });
 
 // 로그인
-router.post("/login", (req, res) => {});
+// 여기서 passport 전략을 실행해주어야 한다.
+router.post("/login", (req, res, next) => {
+  // (err, user, info)는 각 strategy의 done 함수의 각 인자와 매핑된다.
+  passport.authenticate("local", (err, user, info) => {
+    // err는 서버의 에러
+    if (err) {
+      console.error(err);
+      return next(err);
+    }
+    // info는 로직상의 에러
+    if (info) {
+      return res.status(401).send(info.reason);
+    }
+    // 위의 에러가 없다면 로그인을 시킨다.
+    // req.login을 하면 서버쪽에 세션과 쿠키로 저장이 된다.
+    return req.login(user, (loginErr) => {
+      // loginErr가 터지면 next로 보내버리고
+      if (loginErr) return next(loginErr);
+
+      // 정상적이라면 비밀번호를 제외하고 응답해준다.
+      // 일단 Object.assign을 통해서 원래의 user 객체를 얕은 복사해준다.
+      // delete 연산자는 객체의 속성을 제거해준다.
+      const filteredUser = Object.assign({}, user);
+      delete filteredUser.password;
+      return res.json(filteredUser);
+    });
+  });
+});
 
 // 로그아웃
 router.post("logout", (req, res) => {});

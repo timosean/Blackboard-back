@@ -1,5 +1,7 @@
 const passport = require("passport");
 const db = require("../models");
+const localStudent = require("./localStudent");
+const localProfessor = require("./localProfessor");
 
 // 서버쪽의 부담을 최소화하려고 최소한의 데이터만 저장하려는 목적이다.
 // 사용자가 로그인을 하면 정보를 세션(서버 쪽 메모리)에 저장한다.
@@ -33,4 +35,8 @@ module.exports = () => {
       return done(e);
     }
   });
+
+  // 전략을 연결한다
+  localStudent();
+  localProfessor();
 };
