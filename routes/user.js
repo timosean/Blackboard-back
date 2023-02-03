@@ -69,7 +69,7 @@ router.post("/login", (req, res, next) => {
       // 정상적이라면 비밀번호를 제외하고 응답해준다.
       // 일단 Object.assign을 통해서 원래의 user 객체를 얕은 복사해준다.
       // delete 연산자는 객체의 속성을 제거해준다.
-      const filteredUser = Object.assign({}, user);
+      const filteredUser = Object.assign({}, user.toJSON());
       delete filteredUser.password;
       return res.json(filteredUser);
     });
