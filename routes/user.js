@@ -60,7 +60,7 @@ router.post("/login", (req, res, next) => {
       }
       // info는 로직상의 에러
       if (info) {
-        return res.status(401).send(info.reason);
+        return res.status(401).send(info);
       }
       // 위의 에러가 없다면 로그인을 시킨다.
       // req.login을 하면 서버쪽에 세션과 쿠키로 저장이 된다.
