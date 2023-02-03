@@ -11,23 +11,23 @@ module.exports = () => {
   // 서버쪽에 [{id: 3, cookie: 'asdfasdf'}]와 같은 정보 저장.
   // 여기서 cookie는 프론트 단으로 보내준다.
   passport.serializeUser((user, done) => {
-    return done(null, user.id);
+    return done(null, user.userID);
   });
 
   // 프론트에서 'asdfasdf'라는 cookie를 보내줬을 때, id가 3이라는 정보 밖에 모른다.
   // 따라서, id가 3이라는 정보로 해당 유저의 정보를 되찾는 과정을 deserialize라고 한다.
   // 되찾은 유저 정보는 req.user에 저장된다.
-  passport.deserializeUser(async (id, done) => {
+  passport.deserializeUser(async (userID, done) => {
     try {
       const user = await db.Student.findOne({
-        where: { id },
+        where: { userID },
       });
       if (user) return done(null, user);
       else
         return done(
           null,
           await db.Professor.findOne({
-            where: { id },
+            where: { userID },
           })
         );
     } catch (e) {
