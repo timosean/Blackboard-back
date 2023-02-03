@@ -73,7 +73,7 @@ router.post("/login", (req, res, next) => {
       delete filteredUser.password;
       return res.json(filteredUser);
     });
-  });
+  })(req, res, next);
 });
 
 // 로그아웃
