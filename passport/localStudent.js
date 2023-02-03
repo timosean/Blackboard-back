@@ -23,7 +23,8 @@ module.exports = () => {
           }
 
           // 프론트에서 보낸 패스워드와 DB에 저장된 패스워드를 비교
-          const result = bcrypt.compare(password, user.password);
+          const result = await bcrypt.compare(password, user.password);
+          console.log("비밀번호 비교 결과: ", result);
           if (result) return done(null, user);
           return done(null, false, { reason: "비밀번호가 틀립니다." });
         } catch (e) {
