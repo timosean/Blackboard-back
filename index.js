@@ -37,6 +37,7 @@ app.use(
       httpOnly: true, //JavaScript로 cookie에 접근하지 못 하게 만듦
       secure: false, // https를 쓸 때 true
     },
+    name: "blbdblbd",
   })
 );
 
