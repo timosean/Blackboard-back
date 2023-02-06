@@ -11,17 +11,18 @@ const sequelize = new Sequelize(
   config
 );
 
+db.Image = require("./image")(sequelize, Sequelize);
+db.Lecture = require("./lecture")(sequelize, Sequelize);
+db.Post = require("./post")(sequelize, Sequelize);
+db.Student = require("./student")(sequelize, Sequelize);
+db.Professor = require("./professor")(sequelize, Sequelize);
+
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
-db.Image = require("./image")(sequelize, Sequelize);
-db.Lecture = require("./lecture")(sequelize, Sequelize);
-db.Post = require("./post")(sequelize, Sequelize);
-db.Student = require("./student")(sequelize, Sequelize);
-db.Professor = require("./professor")(sequelize, Sequelize);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
