@@ -4,6 +4,18 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const passport = require("passport");
 
+// 내 정보 불러오기
+router.get("/", (req, res) => {
+  // passport index의 deserializeUser을 통과했다면 유저 정보가 req.user에 저장되어 있을 것임
+  if (!req.user) {
+    res.status(401).send("로그인이 필요합니다!");
+  }
+  // req.user가 있다면 해당 유저의 정보를 비밀번호 빼고 반환해줌
+  const user = Object.assign({}, req.user.toJSON());
+  delete user.password;
+  return res.json(user);
+});
+
 // 회원가입
 router.post("/", async (req, res) => {
   const userJob = req.body.userJob === "student" ? "student" : "professor";
