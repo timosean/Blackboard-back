@@ -92,10 +92,14 @@ router.post("/login", (req, res, next) => {
 });
 
 // 로그아웃
-router.post("logout", (req, res) => {
-  req.logOut();
-  req.session.destroy();
-  res.send("로그아웃 성공");
+router.post("/logout", (req, res) => {
+  try {
+    req.logOut();
+    req.session.destroy();
+    res.send("로그아웃 성공");
+  } catch (e) {
+    console.error(e);
+  }
 });
 
 module.exports = router;
