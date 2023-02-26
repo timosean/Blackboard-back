@@ -18,7 +18,12 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Lecture.associate = (db) => {
-    db.Lecture.belongsToMany(db.Student, { through: "Takes" });
+    db.Lecture.belongsToMany(db.Student, {
+      through: "Takes",
+      as: "lecture",
+      foreignKey: "lectureID",
+      sourceKey: "lectureID",
+    });
     db.Lecture.hasMany(db.Post);
     db.Lecture.belongsTo(db.Professor);
   };
