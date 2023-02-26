@@ -1,5 +1,4 @@
 const express = require("express");
-const { route } = require("./user");
 const router = express.Router();
 
 // 강의 등록(교수)

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../models");
 
 // 존재하는 모든 강의 목록 조회 (공통)
 router.get("/", (req, res) => {});
