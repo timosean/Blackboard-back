@@ -24,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "lectureID",
     });
     db.Lecture.hasMany(db.Post);
-    db.Lecture.belongsTo(db.Professor);
+    db.Lecture.belongsTo(db.Professor, {
+      foreignKey: "professorID",
+    });
   };
 
   return Lecture;
